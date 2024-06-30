@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrong Answer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Silkscreen:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(54deg, rgb(255, 125, 125) 0%, orange 100%);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .message {
+            background-color: #3f2858;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px #2d0057;
+        }
+        .message h1 {
+            font-family: "Silkscreen", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            letter-spacing: -10px;
+            margin:0px;
+            font-size: 10dvh;
+            text-shadow: 2px 2px 14px yellow ;
+            
+        }
+
+        .message p {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 5dvh;
+            
+        }
+        .next-button {
+            padding: 15px 30px;
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 3dvh;
+            color: white;
+            background-color: #4b0082;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px #2d0057;
+            margin: 10px;
+        }
+        .next-button:active {
+            box-shadow: 0 2px #2d0057;
+            transform: translateY(3px);
+        }
+    </style>
+</head>
+<body>
+    <audio src="media/wrong.mp3" autoplay></audio>
+    
+    <div class="message">
+        <span style='font-size:100px;'>&#128542;</span>
+        <h1>WRONG!</h1>
+        <p>The right answer is <span id="correct-answer"></span></p>
+        <button class="next-button" onclick="goToNextQuestion()">Next</button>
+    </div>
+    <script>
+        document.getElementById('correct-answer').innerText = correctAnswer();
+
+        function correctAnswer() {
+            const level = localStorage.getItem('selectedLevel');
+            const currentQuestion = parseInt(localStorage.getItem('currentQuestion')) || 1;
+            if (level === 'easy') {
+                switch (currentQuestion) {
+                    case 1: return "B A T";
+                    case 2: return "B A G";
+                    case 3: return "C A T";
+                    case 4: return "B E E";
+                    case 5: return "B U S";
+                    case 6: return "F O X";
+                    case 7: return "P E N";
+                    case 8: return "K E Y";
+                    case 9: return "H A T";
+                    case 10: return "D O G";
+                }
+            } else if (level === 'medium') {
+                switch (currentQuestion) {
+                    case 1: return "A P P L E";
+                    case 2: return "C H A I R";
+                    case 3: return "H O U S E";
+                    case 4: return "Z E B R A";
+                    case 5: return "H O R S E";
+                    case 6: return "T A B L E";
+                    case 7: return "S H A R K";
+                    case 8: return "T I G E R";
+                    case 9: return "C L O C K";
+                    case 10: return "C A M E L";
+                }
+            } else if (level === 'hard') {
+                switch (currentQuestion) {
+                    case 1: return "E L E P H A N T";
+                    case 2: return "B R O C C O L I";
+                    case 3: return "E X E R C I S E";
+                    case 4: return "P E A C O C K";
+                    case 5: return "L I B R A R Y";
+                    case 6: return "U M B R E L L A";
+                    case 7: return "M A R S H M A L L O W";
+                    case 8: return "D I N O S A U R";
+                    case 9: return "S U N G L A S S E S";
+                    case 10: return "A I R P L A N E";
+                }
+            }
+        }
+
+        function goToNextQuestion() {
+            const level = localStorage.getItem('selectedLevel');
+            const currentQuestion = parseInt(localStorage.getItem('currentQuestion')) || 1;
+            const nextQuestion = currentQuestion + 1;
+            localStorage.setItem('currentQuestion', nextQuestion);
+            if (nextQuestion <= 10) {
+                window.location.href = `question/question${nextQuestion}_${level}.html`;
+            } else {
+                window.location.href = 'congrats.html';
+            }
+        }
+    </script>
+</body>
+</html>

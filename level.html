@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Level</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Silkscreen:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(54deg, rgb(255, 125, 125) 0%, rgb(255, 221, 0) 100%);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .banner {
+            font-family: "Silkscreen", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            text-shadow: 8px 8px 10px rgb(255, 115, 1);
+            background-color: #ffcc00;
+            color: white;
+            padding: 10px;
+            padding-bottom: 20px;
+            font-size: 8dvh;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(56, 33, 3);
+            position: relative;
+            top: -50px;
+        }
+        .level-selection {
+            display: flex;
+            flex-direction: column;
+            background-color: #4b0082;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px black;
+            margin-bottom: 30px;
+        }
+        .level-button {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            display: block;
+            margin: 15px 0;
+            padding: 15px 30px;
+            font-size: 24px;
+            color: white;
+            background-color: #8a2be2;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px #5a189a;
+        }
+        .level-button:active {
+            box-shadow: 0 2px #5a189a;
+            transform: translateY(3px);
+        }
+        .begin-button {
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            padding: 15px 30px;
+            font-size: 24px;
+            color: white;
+            background-color: #4b0082;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px #2d0057;
+        }
+        .begin-button:active {
+            box-shadow: 0 2px #2d0057;
+            transform: translateY(3px);
+        }
+
+        @media (max-width: 600px) {
+            .banner{
+                font-size: 5dvh;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="banner">SELECT LEVEL</div>
+        <div class="level-selection">
+            <button class="level-button" onclick="startLevel('easy')">EASY</button>
+            <button class="level-button" onclick="startLevel('medium')">MEDIUM</button>
+			<button class="level-button" onclick="startLevel('hard')">HARD</button>
+        </div>
+        <button class="begin-button" onclick="window.location.href='index.html'">START MENU</button>
+    </div>
+    
+    <script>
+        function startLevel(level) {
+            localStorage.setItem('selectedLevel', level);
+            localStorage.setItem('currentQuestion', 1);
+            window.location.href = 'question/' + level + '.html';
+        }
+    </script>
+</body>
+</html>
