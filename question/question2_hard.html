@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard Level - Question 2</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: orange;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 50px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 24px;
+        }
+        .header div {
+            background-color: #4b0082;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .question {
+            margin: 20px;
+            font-size: 24px;
+            color: black;
+        }
+        .image {
+            margin: 20px;
+        }
+        .hint {
+            font-size: 48px;
+            color: black;
+            margin: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .option {
+            margin: 0 10px;
+            padding: 20px;
+            font-size: 24px;
+            color: white;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px #cc9a00;
+        }
+        .option:active {
+            box-shadow: 0 2px #cc9a00;
+            transform: translateY(3px);
+        }
+        .score {
+            margin: 20px;
+            font-size: 24px;
+            color: white;
+            background-color: #4b0082;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body onload="startNewGame()">
+    <div class="header">
+        <div id="timer">TIME: 0</div>
+        <div id="score">SCORE : 0</div>
+    </div>
+    <div class="container">
+        <div class="question">Tap the letter that completes the word</div>
+        <div class="image">
+            <img src="media/broccoli.png" alt="Broccoli">
+        </div>
+        <div class="hint">B R O C C O _ I</div>
+        <div class="options">
+            <button class="option" onclick="checkAnswer('L')">L</button>
+            <button class="option" onclick="checkAnswer('C')">C</button>
+            <button class="option" onclick="checkAnswer('T')">T</button>
+        </div>
+        <div class="score">2/10</div>
+    </div>
+    <script src="../timer.js"></script>
+    <script>
+        let score = 0;
+
+        function startNewGame() {
+            score = parseInt(localStorage.getItem('score')) || 0;
+            document.getElementById('score').innerText = 'SCORE : ' + score;
+        }
+
+        function checkAnswer(letter) {
+            if (letter === 'L') {
+                score = parseInt(score) + 100;
+                document.getElementById('score').innerText = 'SCORE : ' + score;
+                localStorage.setItem('score', score);
+                window.location.href = '../correct.html';
+            } else {
+                window.location.href = '../wrong.html';
+            }
+        }
+    </script>
+
+</body>
+</html>
