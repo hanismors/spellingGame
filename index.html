@@ -236,7 +236,7 @@
     </style>
 </head>
 <body>
-  <audio src="media/theme.wav" autoplay></audio>
+  <audio id="themeAudio" src="media/theme.wav" preload="auto" loop></audio>
     <div class="container">
     <div class="title">
         <h1>Spelling Game</h1>
@@ -264,6 +264,25 @@
         <div class="cloud"></div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('themeAudio');
 
+            function tryToPlayAudio() {
+                var playPromise = audio.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Audio is playing');
+                    }).catch(error => {
+                        console.log('Autoplay prevented, retrying...');
+                        setTimeout(tryToPlayAudio, 1000); // Retry after 1 second
+                    });
+                }
+            }
+
+            tryToPlayAudio();
+        });
+</script>
 </body>
 </html>
